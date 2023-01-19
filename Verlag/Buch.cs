@@ -13,35 +13,34 @@ namespace Verlag
         private int auflage;
         private string isbn;
         private string isbn10;
-        private char[] unerlaubteSymbole = {' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '#', '_', '!', '?', ';', '§', '%'};
+        private char[] unerlaubteSymbole = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '#', '_', '!', '?', ';', '§', '%'};
 
 
 
         public Buch(string autor, string titel, int auflage):this(autor, titel)
         {
             if (auflage >= 1)
-            this.auflage = auflage;
+            {
+                this.auflage = auflage;
+            }
             else
-            throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
         public Buch(string autor, string titel)
         {
-            bool autorBeinhaltetSymbole = false;
-            for (int i = 0; i < autor.Length; i++)
+            for (int i = 0; i < unerlaubteSymbole.Length; i++)
             {
                 if (autor.Contains(unerlaubteSymbole[i]))
                 {
-                    autorBeinhaltetSymbole = true;
+                    throw new ArgumentException();
                 }
             }
-            if (!autorBeinhaltetSymbole)
-            {
-                this.titel = titel;
-                this.autor = autor;
-                this.auflage = 1;
-            }
-            else
-            throw new ArgumentException();
+
+            this.titel = titel;
+            this.autor = autor;
+            this.auflage = 1;
         }
 
         private string PrüfzifferErgenzen(string isbn)
