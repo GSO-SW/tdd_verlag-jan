@@ -13,7 +13,7 @@ namespace Verlag
         private int auflage;
         private string isbn;
         private string isbn10;
-        private char[] unerlaubteSymbole = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '#', '_', '!', '?', ';', '§', '%'};
+        private char[] unerlaubteSymbole = {'#', ';', '§', '%'};
 
 
 
@@ -35,6 +35,10 @@ namespace Verlag
                 if (autor.Contains(unerlaubteSymbole[i]))
                 {
                     throw new ArgumentException();
+                }
+                else if (autor == "" || autor == null)
+                {
+                    throw new ArgumentNullException();
                 }
             }
 
