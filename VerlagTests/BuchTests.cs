@@ -100,10 +100,13 @@ namespace VerlagTests
 		[DataRow("%")]
 		[DataRow(null)]
 		[ExpectedException(typeof(ArgumentException))]
-		public void Autor_NurSinnvolleEingabenErlaubt(string unerlaubtesZeichen)
+		public void Autor_NurSinnvolleEingabenErlaubt(string unerlaubtesZeichen)		
 		{
+			//Arrange 
+			string name = "Jan Wagner";
+			name = name + unerlaubtesZeichen;
 			//Act
-			Buch b = new Buch(unerlaubtesZeichen, "titel");
+			Buch b = new Buch(name, "titel");
 		}
 	}
 }
