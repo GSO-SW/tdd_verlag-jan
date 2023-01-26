@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
 namespace Verlag
 {
     public class Buch
@@ -12,9 +12,7 @@ namespace Verlag
         private string titel;
         private int auflage;
         private string isbn;
-        private string isbn10;
         private char[] unerlaubteSymbole = {'#', ';', '§', '%'};
-
 
 
         public Buch(string autor, string titel, int auflage):this(autor, titel)
@@ -49,49 +47,22 @@ namespace Verlag
 
         private string PrüfzifferErgenzen(string isbn)
         {
-            string newIsbn;
-            int[] isbnZahl = new int[9];
-            int pruefnummer = 0;
-            int entgueltigePruefnummer = 0;
-            if (isbn.Length < 13)
+            int[] isbnZahlErsteDreiStellen = new int[3];
+            int[] isbnZahlLetztenNeunStellen = new int[9];
+            string isbnRueckgabe = "";
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < 8; i++)
-                {
-                    isbnZahl[i] = Convert.ToInt32(isbn[i]);
-                }
-                for (int i = 0; i < 8; i++)
-                {
-                    pruefnummer = isbnZahl[i] * (i + 1);
-                }
-                entgueltigePruefnummer = pruefnummer / 11;
+                isbnZahlErsteDreiStellen[i] = (int)isbn[i];
+                isbnRueckgabe += isbnZahlErsteDreiStellen[i];
             }
-            else
+            isbnRueckgabe += "-";
+            for (int i = 0; i < 9; i++)
             {
-                return isbn;
+                isbnZahlLetztenNeunStellen[i] = (int)isbn[i + 4];
+                isbnRueckgabe += isbnZahlLetztenNeunStellen[i];
             }
-            if (entgueltigePruefnummer == 10)
-            {
-                newIsbn = "Isbn:" + isbn + "X";
-            }
-            else
-            {
-                newIsbn = ("Isbn: " + isbn + entgueltigePruefnummer.ToString());
-            }
-            this.isbn10 = Isbn10Erstellen(newIsbn);
-            return newIsbn;
+            return (isbnRueckgabe);
         }
-
-        private string Isbn10Erstellen(string isbn)
-        {
-            string isbn10 = "Isbn 10: ";
-            for (int i = 3; i < 13; i++)
-            {
-                isbn10 += isbn[i];
-            }
-            return isbn10;
-        }
-
-
 
         public string Autor
         {
@@ -114,6 +85,7 @@ namespace Verlag
         public string Isbn
         {
             set { isbn = PrüfzifferErgenzen(value); }
+            get { return isbn; }
         }
     }
 }
