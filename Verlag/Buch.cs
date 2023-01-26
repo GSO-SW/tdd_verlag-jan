@@ -45,7 +45,7 @@ namespace Verlag
             this.auflage = 1;
         }
 
-        private string PrüfzifferErgenzen(string isbn)
+        private string PruefzifferErgaenzen(string isbn)
         {
             int[] isbnZahlErsteDreiStellen = new int[3];
             int[] isbnZahlLetztenNeunStellen = new int[9];
@@ -61,7 +61,7 @@ namespace Verlag
                 isbnZahlLetztenNeunStellen[i] = (int)isbn[i + 4];
                 isbnRueckgabe += isbnZahlLetztenNeunStellen[i];
             }
-            return (isbnRueckgabe);
+            return (isbnRueckgabe+"9");
         }
 
         public string Autor
@@ -84,7 +84,7 @@ namespace Verlag
         }   
         public string Isbn
         {
-            set { isbn = PrüfzifferErgenzen(value); }
+            set { isbn = PruefzifferErgaenzen(value); }
             get { return isbn; }
         }
     }
