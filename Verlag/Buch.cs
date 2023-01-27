@@ -47,21 +47,25 @@ namespace Verlag
 
         private string PruefzifferErgaenzen(string isbn)
         {
-            int[] isbnZahlErsteDreiStellen = new int[3];
-            int[] isbnZahlLetztenNeunStellen = new int[9];
-            string isbnRueckgabe = "";
+            int[] isbnInInt = new int[isbn.Length - 1];
+            int pruefziffer;
+            string isbnString = "";
+
             for (int i = 0; i < 3; i++)
             {
-                isbnZahlErsteDreiStellen[i] = (int)isbn[i];
-                isbnRueckgabe += isbnZahlErsteDreiStellen[i];
+                isbnInInt[i] = Convert.ToInt32(isbn[i].ToString());
+                isbnString += isbnInInt[i].ToString();
             }
-            isbnRueckgabe += "-";
-            for (int i = 0; i < 9; i++)
+            isbnString += "-";
+            for (int i = 3; i < isbn.Length - 1; i++)
             {
-                isbnZahlLetztenNeunStellen[i] = (int)isbn[i + 4];
-                isbnRueckgabe += isbnZahlLetztenNeunStellen[i];
+                isbnInInt[i] = Convert.ToInt32(isbn[i + 1].ToString());
+                isbnString += isbnInInt[i].ToString();
             }
-            return (isbnRueckgabe+"9");
+            pruefziffer = (isbnInInt[0] + isbnInInt[1] + isbnInInt[2]) / 3;
+            isbnString += pruefziffer.ToString();
+
+            return (isbnString);
         }
 
         public string Autor
