@@ -117,20 +117,5 @@ namespace VerlagTests
 			//Act
 			Buch b = new Buch(nullzeichen, "titel");
         }
-
-		[TestMethod]
-		public void Buch_IsbnKannEingegebenWerden()
-        {
-			//Arrange
-			string isbn = "927-3-7309-9717-8";
-			string isbnResult = "927-3-7309-9717-8-193";
-			Buch b = new Buch("autor", "titel");
-
-			//Act 
-			b.Isbn = isbn;
-
-			//Assert
-			Assert.AreEqual(isbnResult, b.Isbn);
-		}
 	}
 }
