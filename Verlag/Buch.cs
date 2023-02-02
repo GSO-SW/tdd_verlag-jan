@@ -12,10 +12,14 @@ namespace Verlag
         private string titel;
         private int auflage;
         private string isbn;
-        private char[] unerlaubteSymbole = {'#', ';', '§', '%'};
+        private bool eBook;
+        private double preis;
+        private DateOnly date = new DateOnly();
+        private int seitenanzahl;
+        private char[] unerlaubteSymbole = { '#', ';', '§', '%' };
 
 
-        public Buch(string autor, string titel, int auflage):this(autor, titel)
+        public Buch(string autor, string titel, int auflage) : this(autor, titel)
         {
             if (auflage >= 1)
             {
@@ -80,16 +84,40 @@ namespace Verlag
         public int Auflage
         {
             get { return auflage; }
-            set 
-            { 
-                if (value > 0) this.auflage = value; 
-                else throw new ArgumentOutOfRangeException(); 
+            set
+            {
+                if (value > 0) this.auflage = value;
+                else throw new ArgumentOutOfRangeException();
             }
-        }   
+        }
         public string Isbn
         {
             set { isbn = PruefzifferErgaenzen(value); }
             get { return isbn; }
+        }
+
+        public bool EBook
+        {
+            set { eBook = value; }
+            get { return eBook; }
+        }
+
+        public double Preis
+        {
+            set { preis = value; }
+            get { return preis; }
+        }
+
+        public DateOnly Date
+        {
+            set { date = value; }
+            get { return date; }
+        }
+
+        public int Seitenanzahl
+        {
+            set { seitenanzahl = value; }
+            get { return seitenanzahl; }
         }
     }
 }

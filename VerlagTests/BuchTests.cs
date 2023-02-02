@@ -117,5 +117,61 @@ namespace VerlagTests
 			//Act
 			Buch b = new Buch(nullzeichen, "titel");
         }
+
+		[TestMethod]
+		public void Buch_KannAufeBookUndOderAufNormalGestelltWerden()
+        {
+			//Arrange 
+			bool eBook = true;
+			Buch b = new Buch("autor", "titel");
+
+			//Act 
+			b.EBook = eBook;
+
+			//Assert
+			Assert.AreEqual(eBook, b.EBook);
+        }
+
+		[TestMethod]
+		public void Buch_KannPreisZugeteiltBekommen()
+        {
+			//Arrange 
+			double preis = 14.99;
+			Buch b = new Buch("autor", "titel");
+
+			//Act 
+			b.Preis = preis;
+
+			//Assert
+			Assert.AreEqual(preis, b.Preis);
+        }
+
+		[TestMethod]
+		public void Buch_KannErscheinungsjahrZugeteiltWerden()
+        {
+			//Arrange 
+			DateOnly date = new DateOnly(2008, 6, 1);
+			Buch b = new Buch("autor", "titel");
+
+			//Act
+			b.Date = date;
+
+			//Assert
+			Assert.AreEqual(date, b.Date);
+        }
+
+		[TestMethod]
+		public void Buch_KannSeitenzahlZugeteiltWerden()
+        {
+			//Arrange 
+			int seitenzahl = 289;
+			Buch b = new Buch("autor", "titel");
+
+			//Act
+			b.Seitenanzahl = seitenzahl;
+
+			//Assert
+			Assert.AreEqual(seitenzahl, b.Seitenanzahl);
+        }
 	}
 }
