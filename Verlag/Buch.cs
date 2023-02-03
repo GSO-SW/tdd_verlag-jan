@@ -11,7 +11,7 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
-        private string isbn;
+        private ISBN isbn;
         private bool eBook;
         private double preis;
         private DateOnly date = new DateOnly();
@@ -49,29 +49,6 @@ namespace Verlag
             this.auflage = 1;
         }
 
-        private string PruefzifferErgaenzen(string isbn)
-        {
-            int[] isbnInInt = new int[isbn.Length - 1];
-            int pruefziffer;
-            string isbnString = "";
-
-            for (int i = 0; i < 3; i++)
-            {
-                isbnInInt[i] = Convert.ToInt32(isbn[i].ToString());
-                isbnString += isbnInInt[i].ToString();
-            }
-            isbnString += "-";
-            for (int i = 3; i < isbn.Length - 1; i++)
-            {
-                isbnInInt[i] = Convert.ToInt32(isbn[i + 1].ToString());
-                isbnString += isbnInInt[i].ToString();
-            }
-            pruefziffer = (isbnInInt[0] + isbnInInt[1] + isbnInInt[2]) / 3;
-            isbnString += pruefziffer.ToString();
-
-            return (isbnString);
-        }
-
         public string Autor
         {
             get { return autor; }
@@ -90,10 +67,19 @@ namespace Verlag
                 else throw new ArgumentOutOfRangeException();
             }
         }
-        public string Isbn
+        public string IsbnSetzen
         {
-            set { isbn = PruefzifferErgaenzen(value); }
-            get { return isbn; }
+            set { ISBN isbn = new ISBN(value); this.isbn = isbn; }
+        }
+
+        public string Isbn10
+        {
+            get { return isbn.Isbn10; }
+        }
+
+        public string IsbnMitPruefziffer
+        {
+            get { return isbn.IsbnMitPruefziffer; }
         }
 
         public bool EBook

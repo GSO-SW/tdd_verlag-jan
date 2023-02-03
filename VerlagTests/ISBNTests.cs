@@ -12,33 +12,36 @@ namespace VerlagTests
         {
             //Arrange
             string isbn = "927-928574826";
-            string autor = "autor";
-            string titel = "titel";
-            Buch b = new Buch(autor, titel);
 
             //Act
-            b.Isbn = isbn;
-
-            //Assert
-            Assert.AreEqual(isbn, b.Isbn);
+            ISBN isbn = new ISBN(isbn);
         }
         [TestMethod]
         public void ISBN_PruefzifferWirdAutomatischBerechnet()
         {
             //Arrange
-            //Arrange
             string isbn = "927-928574826";
             string pruefziffer = "6";
             string isbnMitPruefziffer = isbn + pruefziffer;
-            string autor = "autor";
-            string titel = "titel";
-            Buch b = new Buch(autor, titel);
 
             //Act
-            b.Isbn = isbn;
+            ISBN isbn = new ISBN(isbn);
 
             //Assert
-            Assert.AreEqual(isbnMitPruefziffer, b.Isbn);
+            Assert.AreEqual(isbnMitPruefziffer, isbn.IsbnMitPruefziffer);
+        }
+        [TestMethod]
+        public void ISBN_isbn10KannErstelltWerden()
+        {
+            //Arrange
+            string isbn = "927-928574826";
+            string isbn10 = "928574826";
+
+            //Act
+            ISBN isbn = new ISBN(isbn);
+
+            //Assert
+            Assert.AreEqual(isbn10, isbn.Isbn10);
         }
     }
 }
