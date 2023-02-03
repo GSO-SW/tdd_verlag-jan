@@ -11,21 +11,21 @@ namespace VerlagTests
         public void ISBN_KannHinzugefuegtWerden()
         {
             //Arrange
-            string isbn = "927-928574826";
+            string isbn13 = "927-928574826";
 
             //Act
-            ISBN isbn = new ISBN(isbn);
+            ISBN isbn = new ISBN(isbn13);
         }
         [TestMethod]
         public void ISBN_PruefzifferWirdAutomatischBerechnet()
         {
             //Arrange
-            string isbn = "927-928574826";
+            string isbn13 = "927-928574826";
             string pruefziffer = "6";
-            string isbnMitPruefziffer = isbn + pruefziffer;
+            string isbnMitPruefziffer = isbn13 + pruefziffer;
 
             //Act
-            ISBN isbn = new ISBN(isbn);
+            ISBN isbn = new ISBN(isbn13);
 
             //Assert
             Assert.AreEqual(isbnMitPruefziffer, isbn.IsbnMitPruefziffer);
@@ -34,11 +34,11 @@ namespace VerlagTests
         public void ISBN_isbn10KannErstelltWerden()
         {
             //Arrange
-            string isbn = "927-928574826";
+            string isbn13 = "927-928574826";
             string isbn10 = "928574826";
 
             //Act
-            ISBN isbn = new ISBN(isbn);
+            ISBN isbn = new ISBN(isbn13);
 
             //Assert
             Assert.AreEqual(isbn10, isbn.Isbn10);

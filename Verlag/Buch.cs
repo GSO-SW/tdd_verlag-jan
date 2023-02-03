@@ -32,20 +32,28 @@ namespace Verlag
         }
         public Buch(string autor, string titel)
         {
-            for (int i = 0; i < unerlaubteSymbole.Length; i++)
+            if(autor == null)
             {
-                if (autor.Contains(unerlaubteSymbole[i]))
+                throw new ArgumentNullException();
+            } 
+            else
+            {
+                for (int i = 0; i < unerlaubteSymbole.Length; i++)
                 {
-                    throw new ArgumentException();
+                    if (autor.Contains(unerlaubteSymbole[i]))
+                    {
+                        throw new ArgumentException();
+                    }
+                    else if (autor == "")
+                    {
+                        throw new ArgumentException();
+                    }
                 }
-                else if (autor == "" || autor == null)
-                {
-                    throw new ArgumentNullException();
-                }
+
+                this.autor = autor;
             }
 
             this.titel = titel;
-            this.autor = autor;
             this.auflage = 1;
         }
 

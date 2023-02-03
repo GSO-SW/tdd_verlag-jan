@@ -91,7 +91,6 @@ namespace VerlagTests
 			b.Auflage = auflageNeu;
 		}
 
-		// DataRow: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest#add-more-features
 		[TestMethod]
 		[DataRow("#")]
 		[DataRow(";")]
@@ -109,13 +108,14 @@ namespace VerlagTests
 		}
 
 		[TestMethod]
-		[DataRow(null)]
-		[DataRow("")]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void Autor_NameKannNichtNullSein(string nullzeichen)
+		public void Autor_NameKannNichtNullSein()
         {
+			//Arrange 
+			string autor = null;
+
 			//Act
-			Buch b = new Buch(nullzeichen, "titel");
+			Buch b = new Buch(autor, "titel");
         }
 
 		[TestMethod]

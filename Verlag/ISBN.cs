@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Verlag
 {
-    internal class ISBN
+    public class ISBN
     {
         private string isbnMitPruefziffer;
         private string isbn10;
