@@ -15,6 +15,9 @@ namespace VerlagTests
 
             //Act
             ISBN isbn = new ISBN(isbn13);
+            
+            //Assert
+            Assert.AreEqual(isbn13, isbn.Isbn13);
         }
         [TestMethod]
         public void ISBN_PruefzifferWirdAutomatischBerechnet()
